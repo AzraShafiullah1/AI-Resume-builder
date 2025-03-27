@@ -1,9 +1,10 @@
-import { FormField } from '@/components/ui/form'
+import { FormControl, FormField, FormItem } from '@/components/ui/form'
 import { personalInfoSchema, PersonalInfoValues } from '@/lib/valiidation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { resolve } from 'path'
 import React from 'react'
-import { ControllerFieldState, ControllerRenderProps, FieldValues, Form, useForm, UseFormStateReturn } from 'react-hook-form'
+import { ControllerFieldState,ControllerRenderProps, FieldValues, Form, useForm, UseFormStateReturn } from 'react-hook-form'
+
 
 export default function PersonalInfoForm() {
     const form = useForm<PersonalInfoValues>({
@@ -30,8 +31,16 @@ return (
             <FormField
             control={form.control}
             name="photo"
-        render={({ field }) => (
-            <input {...field} />
+        render={({ field: {value, ...fieldValues}}) => (
+           <FormItem>
+            <FormLabel>Your photo</FormLabel>
+            <FormControl>
+                <Input 
+                {...fieldValues}
+                />
+            </FormControl>
+           </FormItem>
+
         )}
              />
         </form>
